@@ -12,8 +12,8 @@ namespace Business.Abstract
         
         
 
-        IResult Add(User car);
-        IResult update(User car);
-        IResult delete(User car);
+        IResult Add(User user);
+        IResult update(User user);
+        IResult delete(User user);
     }
 }
