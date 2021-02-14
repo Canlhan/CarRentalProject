@@ -29,7 +29,7 @@ namespace Business.Concrete
             if (_customerDal.Get(c => c.Id == customer.Id) == null)
             {
                 _customerDal.Add(customer);
-                return new SuccessResult(Messages.EntityAdded+);
+                return new SuccessResult(Messages.EntityAdded);
             }
 
             return new ErrorResult(Messages.EntityNotFound);
