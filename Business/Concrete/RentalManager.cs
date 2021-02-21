@@ -5,6 +5,8 @@ using System.Linq.Expressions;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -34,8 +36,8 @@ namespace Business.Concrete
            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
        }
 
-
-       public IResult Add(Rental rental)
+       [ValidationAspect(typeof(RentalValidator))]
+        public IResult Add(Rental rental)
        {
            _rentals = _rentalDal.GetAll(r => r.CarId == rental.CarId);
            if (_rentals.Count(r => r.ReturnDate == null) > 0)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -24,7 +26,8 @@ namespace Business.Concrete
 
         }
 
-        public IResult Add(Customer customer)
+       [ValidationAspect(typeof(CustomerValidator))]
+       public IResult Add(Customer customer)
         {
             if (_customerDal.Get(c => c.Id == customer.Id) == null)
             {
