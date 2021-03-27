@@ -13,7 +13,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.Description).MinimumLength(2);
             RuleFor(c => c.BrandId).NotEmpty();
             RuleFor(c => c.ColorId).NotEmpty();
-            RuleFor(c => c.ModelYear).NotEmpty().MinimumLength(1960).MaximumLength(2021);
+            RuleFor(c => c.ModelYear).NotEmpty().MinimumLength(4).MaximumLength(2021);
             RuleFor(c => c.DailyPrice).NotEmpty().GreaterThan(0);
             RuleFor(c => c.Id).NotEmpty();
 

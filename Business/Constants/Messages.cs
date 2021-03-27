@@ -12,5 +12,6 @@ namespace Business.Constants
         public static string EntityNotFound = " Böyle bir obje yok";
 
         public static string EntityDeleted = " Nesne silindi";
+        internal static string ImageOfCarLimit="bir araç yalnız 5 tane resim alabilir";
     }
 }

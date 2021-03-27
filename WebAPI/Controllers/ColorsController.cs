@@ -20,16 +20,16 @@ namespace WebAPI.Controllers
             _colorService = colorService;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         public IActionResult Get()
         {
             var result = _colorService.GetAll();
             if (result.succces)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
-            return BadRequest(result.message);
+            return BadRequest(result);
         }
         [HttpPost("addcolor")]
         public IActionResult Get(Color color)

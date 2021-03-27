@@ -28,7 +28,7 @@ namespace Core.Aspects.Autofac.Validation
             var entities = invocation.Arguments.Where(t => t.GetType() == entityType);
             foreach (var entity in entities)
             {
-                ValidationTools.Validate(validator, entity);
+                ValidationTools.Validate(validator,entity);
             }
         }
     }

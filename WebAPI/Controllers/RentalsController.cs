@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
             var result = _rentalService.GetRentalDetail();
             if (result.succces)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
             return BadRequest(result.message);
