@@ -5,53 +5,36 @@ using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete
 {
-    public class UserManager:IUserService
+    public class UserManager : IUserService
     {
-       IUserDal _userDal;
+        IUserDal _userDal;
 
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
         }
 
-        public IDataResult<List<User>> GetALL()
+        public List<OperationClaim> GetClaims(User user)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll());
+            return _userDal.GetClaims(user);
         }
 
-        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
-            return new SuccessResult(Messages.EntityAdded);
+            return new SuccessResult();
         }
 
-        public IResult update(User user)
+        public User GetByMail(string email)
         {
-            if (_userDal.Get(u => u.Id == user.Id) != null)
-            {
-                _userDal.Update(user);
-                return new SuccessResult(Messages.EntityUptaded);
-            }
-
-            return new ErrorResult(Messages.EntityNotFound);
-        }
-
-        public IResult delete(User user)
-        {
-            if (_userDal.Get(u => u.Id == user.Id) != null)
-            {
-                _userDal.Delete(user);
-                return new SuccessResult(Messages.EntityDeleted);
-            }
-
-            return new ErrorResult(Messages.EntityNotFound);
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }

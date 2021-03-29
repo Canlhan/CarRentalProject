@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Entities.Concrete;
 
 namespace WebAPI.Controllers
@@ -81,7 +83,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("addcar")]
-
+        
         public IActionResult Add(Car car)
         {
             var result = _carService.Add(car);

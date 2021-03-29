@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 
 namespace WebAPI.Controllers
@@ -20,18 +21,7 @@ namespace WebAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet("getall")]
-
-        public IActionResult GetAll()
-        {
-            var result = _userService.GetALL();
-            if (result.succces)
-            {
-                return Ok(result.Data);
-            }
-
-            return BadRequest(result.message);
-        }
+       
 
      
         [HttpPost("adduser")]
@@ -40,10 +30,10 @@ namespace WebAPI.Controllers
             var result = _userService.Add(user);
             if (result.succces)
             {
-                return Ok(result.message);
+                return Ok(result);
             }
 
-            return BadRequest(result.message);
+            return BadRequest(result);
         }
 
     }
